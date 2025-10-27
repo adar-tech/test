@@ -216,6 +216,7 @@
         alert("doCommand failed: " + e.message);
       }
     }
+
     document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.querySelectorAll('.topnav [data-tab]');
     const panels  = document.querySelectorAll('.group');
@@ -262,7 +263,7 @@
   <div class="group" id="launcher">
     <h2>Launcher helpers</h2>
     <div class="grid">
-      <button onclick="radix.launchApp('com.android.settings')">Launch app (calendar)</button>
+      <button onclick="radix.launchApp('com.android.calendar')">Launch app (calendar)</button>
     </div>
   </div>
 
@@ -278,7 +279,7 @@
   <div class="group" id="device">
     <h2>Device actions</h2>
     <div class="grid">
-      <button onclick="radix.reboot()">
+      <button onclick="if (confirm('Reboot now?')) { alert('Rebooting…'); radix.reboot(); }">
         reboot
       </button>
       <button onclick="radix.shutdown()">
@@ -351,8 +352,8 @@
       </button>
       <button onclick="
       if (!window.radix) return alert('Radix SDK missing');
-      radix.updateVideoStreamPosition('cam1', 100, 100, 640, 360);
-      alert('Stream moved to 100x100, size 640x360');
+      radix.updateVideoStreamPosition('cam1', 10, 10, 640, 360);
+      alert('Stream moved to 10x10, size 640x360');
       ">
         Move stream (cam1)
       </button>
@@ -363,25 +364,26 @@
       ">
         Check if cam1 is active
       </button>
+      
     </div>
   </div>
 
   <div class="group" id="connectivity">
     <h2>Settings &amp; connectivity</h2>
     <div class="grid">
-      <button onclick="radix.getNetworkScope()">
+      <button onclick="alert('NetworkScope: ' + (radix.getNetworkScope?.() ?? '—'))">
         getNetworkScope
       </button>
-      <button onclick="radix.getMacAddress()">
+      <button onclick="alert('NetworkScope: ' + (radix.getMacAddress?.() ?? '—'))">
         getMacAddress
       </button>
-      <button onclick="radix.getLocalIpAddress()">
+      <button onclick="alert('Local IP: ' + (radix.getLocalIpAddress?.() ?? '—'))">
         getLocalIpAddress
       </button>
-      <button onclick="radix.getSpeakerVolume()">
+      <button onclick="alert('Local IP: ' + (radix.getSpeakerVolume?.() ?? '—'))">
         getSpeakerVolume
       </button>
-      <button onclick="radix.getMaxSpeakerVolume()">
+      <button onclick="alert('Local IP: ' + (radix.getMaxSpeakerVolume?.() ?? '—'))">
         getMaxSpeakerVolume
       </button>
       <button onclick="
